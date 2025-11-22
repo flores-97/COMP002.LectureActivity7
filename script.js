@@ -9,3 +9,34 @@
 // also want to call this function again when the user saves their preferences to
 // immediately apply them. Make sure you also notify the user somehow that the preferences
 // were saved.
+document.addEventListener('DOMContentLoaded', (event) => {
+    const preferencesForm = document.getElementById('preferences-form');
+    const nameInput = document.getElementById('name');
+    const backgroundColorInput = document.getElementById('background-color');
+    const foregroundColorInput = document.getElementById('foreground-color');
+    const greetingElement = document.getElementById('greeting');
+    const bodyElement = document.body;
+
+    function userPreferences() {
+        const savedName = localStorage.getItem('userName');
+        const savedBackgroundColor = localStorage.getItem('backgroundColor');
+        const savedForegroundColor = localStorage.getItem('foregroundColor');
+
+        if (savedName) {
+            greetingElement.textContent = `Hello, ${savedName}!`;
+            nameInput.value = savedName;//saves user's name 
+        } else {
+            greetingElement.textContent = 'Hello, please enter your name!';//if new user, name is requested
+        }
+
+        if (savedBackgroundColor) {
+            bodyElement.style.backgroundColor = savedBackgroundColor;
+            backgroundColorInput.value = savedBackgroundColor; //will save background color
+        }
+
+        if (savedForegroundColor) {
+            bodyElement.style.color = savedForegroundColor;
+            foregroundColorInput.value = savedForegroundColor;//will save text color
+        }
+    }
+});
