@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const greetingElement = document.getElementById('greeting');
     const bodyElement = document.body;
 
-    function userPreferences() {
+    function applyPreferences() {
         const savedName = localStorage.getItem('userName');
         const savedBackgroundColor = localStorage.getItem('backgroundColor');
         const savedForegroundColor = localStorage.getItem('foregroundColor');
@@ -38,5 +38,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
             bodyElement.style.color = savedForegroundColor;
             foregroundColorInput.value = savedForegroundColor;//will save text color
         }
-    }
+    }    
+    
+    preferencesForm.addEventListener('submit', event => {
+        event.preventDefault();
+        
+        const name = nameInput.value;
+        const backgroundColor = backgroundColorInput.value;
+        const foregroundColor = foregroundColorInput.value;
+
+        
+        localStorage.setItem('userName', name);
+        localStorage.setItem('backgroundColor', backgroundColor);
+        localStorage.setItem('foregroundColor', foregroundColor);
+        // Saved to localStorage
+        
+        alert('Your preferences have been saved!');//popup message stating preferences selected 
+    });
+
+    
+    applyPreferences();//applies users selected preferences 
 });
